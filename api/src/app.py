@@ -53,6 +53,9 @@ async def read_quote(min_t: str | None = None):
     """
     Retrieves quotes based on a mininum time (all quotes during or after that timestamp).
     """
+    quotes_list = []
     if min_t:
-        return [item for item in database["quotes"] if datetime.fromisoformat(item["time"]) >= datetime.fromisoformat(min_t)]
-    return database["quotes"]
+        quotes_list = [item for item in database["quotes"] if datetime.fromisoformat(item["time"]) >= datetime.fromisoformat(min_t)]
+    else:
+        quotes_list = database["quotes"]
+    return sorted(quotes_list, key=lambda item: datetime.fromisoformat(item["time"]), reverse=True)
