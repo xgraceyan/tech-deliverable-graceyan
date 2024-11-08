@@ -8,6 +8,36 @@ function App() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
+  const maxAgeToTimestamp = () => {
+    // Converts the max age select option into timestamps relative to now
+    var now = moment();
+    if (maxAge == "week")
+      return now.subtract(7, "days").format("YYYY-MM-DDTHH:mm:ss");
+    if (maxAge == "month") {
+      return now.subtract(1, "month").format("YYYY-MM-DDTHH:mm:ss");
+    }
+    if (maxAge == "year") {
+      return now.subtract(1, "year").format("YYYY-MM-DDTHH:mm:ss");
+    }
+    if (maxAge == "all") {
+      return 0;
+    }
+  };
+
+  const fetchQuotes = () => {
+    // Fetches quotes from database based on max age selection
+    const timestamp = maxAgeToTimestamp();
+    if (timestamp == 0) {
+      axios.get(`/api/quote`).then((res) => {
+        setQuotes(res.data);
+      });
+    } else {
+      axios.get(`/api/quote?min_t=${timestamp}`).then((res) => {
+        setQuotes(res.data);
+      });
+    }
+  };
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -17,6 +47,7 @@ function App() {
 
   const handleGetSubmit = (e) => {
     e.preventDefault();
+    fetchQuotes();
   };
 
   const handlePostSubmit = (e) => {
