@@ -94,3 +94,51 @@ img.logo {
   max-width: 10%;
   filter: brightness(0.5) invert(1);
 }
+
+.shadow-lg {
+  box-shadow: 5px 10px black;
+}
+
+.rounded-md {
+  border-radius: 50px;
+}
+
+.bold-color {
+  color: $bold_text;
+}
+
+.light-color {
+  color: $text;
+}
+
+.form-btn {
+  width: 10rem;
+  height: 3rem;
+  border-radius: 50px;
+  font-weight: 500;
+  color: white;
+}
+
+.form-btn-sm {
+  width: 5rem;
+}
+
+.form-btn:hover {
+  box-shadow: 0px 2px 20px #6e4be3a0;
+  transition: ease-in-out 0.2s;
+}
+
+.form-control {
+  border-radius: 50px;
+  height: 3rem;
+  border-width: 2px;
+}
+
+.form-control:focus {
+  border-color: $primary;
+  border-width: 2px;
+}
+
+.dropdown {
+  width: 20rem;
+}

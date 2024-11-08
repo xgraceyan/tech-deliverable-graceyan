@@ -48,6 +48,26 @@ function App() {
     }
   };
 
+  const submitQuote = () => {
+    var formData = new FormData();
+    formData.append("name", name);
+    formData.append("message", message);
+
+    axios({
+      method: "post",
+      url: "/api/quote",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }).then((res) => {
+      if (res.data) {
+        setQuotes([res.data[0], ...quotes]);
+      }
+      fetchQuotes();
+    });
+  };
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -62,6 +82,7 @@ function App() {
 
   const handlePostSubmit = (e) => {
     e.preventDefault();
+    submitQuote();
   };
 
   return (
@@ -134,6 +155,44 @@ function App() {
             </div>
           </div>
         </div>
+
+        <div className="spacer"></div>
+
+        <h2 className="text-center fw-bold bold-color">Previous Quotes</h2>
+        <p className="text-center form-label fw-medium light-color text-start">
+          Select how recent quotes should be
+        </p>
+
+        <div className="spacer-sm"></div>
+        <form
+          className="row row-cols-lg-auto gx-5 gy-2 align-items-center d-flex justify-content-center"
+          onSubmit={handleGetSubmit}
+        >
+          <div className="col-12 col-md-12 col-sm-8 d-flex justify-content-center align-items-center">
+            <div id="select-quotes">
+              <select
+                name="quote-filter"
+                id="quote-filter"
+                onChange={handleMaxAgeChange}
+                className="form-select dropdown light-color form-control"
+              >
+                <option value="week">Last week</option>
+                <option value="month">Last month</option>
+                <option value="year">Last year</option>
+                <option value="all">All quotes</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="col-12 col-md-12 col-sm-4  d-flex justify-content-center align-items-stretch">
+            <button
+              type="submit"
+              className="btn btn-primary form-btn-sm form-btn"
+            >
+              Go!
+            </button>
+          </div>
+        </form>
 
         <h2>Previous Quotes</h2>
         {/* TODO: Display the actual quotes from the database */}
