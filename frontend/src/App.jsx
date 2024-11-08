@@ -197,7 +197,10 @@ function App() {
         </form>
 
         <div className="messages container-side">
-          <pre>{quotes && quotes.map((quote) => quote.message)}</pre>
+          <pre>
+            {quotes &&
+              quotes.map((quote) => <Quote quote={quote} key={quote.time} />)}
+          </pre>
         </div>
       </div>
     </div>
