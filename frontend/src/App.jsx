@@ -77,6 +77,10 @@ function App() {
     setMessage(e.target.value);
   };
 
+  const handleMaxAgeChange = (e) => {
+    setMaxAge(e.target.value);
+  };
+
   const handleGetSubmit = (e) => {
     e.preventDefault();
     fetchQuotes();
