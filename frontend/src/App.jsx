@@ -51,6 +51,7 @@ function App() {
   };
 
   const submitQuote = () => {
+    // formats user data into FormData and posts it to db
     var formData = new FormData();
     formData.append("name", name);
     formData.append("message", message);
@@ -94,9 +95,6 @@ function App() {
   return (
     <div className="App">
       <div className="container container-md">
-        {/* TODO: include an icon for the quote book */}
-        <h1>Hack at UCI Tech Deliverable</h1>
-
         <div className="text-center" id="header">
           <img src="images/quotebook.png" alt="" className="logo" />
           <div className="spacer-sm"></div>
@@ -117,7 +115,6 @@ function App() {
                 </h2>
               </div>
               <div className="card-body">
-                {/* TODO: implement custom form submission logic to not refresh the page */}
                 <form onSubmit={handlePostSubmit}>
                   <label
                     htmlFor="input-name"
