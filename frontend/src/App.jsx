@@ -15,21 +15,12 @@ function App() {
     // Converts the max age select option into timestamps relative to now
     var now = moment();
     if (maxAge == "week")
-      return now
-        .subtract(7, "days")
-        .startOf("isoWeek")
-        .format("YYYY-MM-DDTHH:mm:ss");
+      return now.startOf("isoWeek").format("YYYY-MM-DDTHH:mm:ss");
     if (maxAge == "month") {
-      return now
-        .subtract(1, "month")
-        .startOf("month")
-        .format("YYYY-MM-DDTHH:mm:ss");
+      return now.startOf("month").format("YYYY-MM-DDTHH:mm:ss");
     }
     if (maxAge == "year") {
-      return now
-        .subtract(1, "year")
-        .startOf("year")
-        .format("YYYY-MM-DDTHH:mm:ss");
+      return now.startOf("year").format("YYYY-MM-DDTHH:mm:ss");
     }
     if (maxAge == "all") {
       return 0;
