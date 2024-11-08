@@ -28,13 +28,23 @@ function App() {
     // Fetches quotes from database based on max age selection
     const timestamp = maxAgeToTimestamp();
     if (timestamp == 0) {
-      axios.get(`/api/quote`).then((res) => {
-        setQuotes(res.data);
-      });
+      axios
+        .get(`/api/quote`)
+        .then((res) => {
+          setQuotes(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
-      axios.get(`/api/quote?min_t=${timestamp}`).then((res) => {
-        setQuotes(res.data);
-      });
+      axios
+        .get(`/api/quote?min_t=${timestamp}`)
+        .then((res) => {
+          setQuotes(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
