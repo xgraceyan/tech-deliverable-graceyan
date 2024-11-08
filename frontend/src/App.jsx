@@ -7,6 +7,8 @@ import moment from "moment";
 function App() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [maxAge, setMaxAge] = useState("week");
+  const [quotes, setQuotes] = useState([]);
 
   const maxAgeToTimestamp = () => {
     // Converts the max age select option into timestamps relative to now
@@ -194,12 +196,8 @@ function App() {
           </div>
         </form>
 
-        <h2>Previous Quotes</h2>
-        {/* TODO: Display the actual quotes from the database */}
-        <div className="messages">
-          <p>Peter Anteater</p>
-          <p>Zot Zot Zot!</p>
-          <p>Every day</p>
+        <div className="messages container-side">
+          <pre>{quotes && quotes.map((quote) => quote.message)}</pre>
         </div>
       </div>
     </div>

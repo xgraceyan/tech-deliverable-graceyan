@@ -1,0 +1,14 @@
+.quote-card {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 50px;
+  font-family: "Inter", sans-serif;
+  border-width: 2px;
+}
+
+.quote-card:hover {
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3);
+  border-color: #6e4be3;
+  transition: ease-in-out 0.25s;
+  cursor: pointer;
+}
