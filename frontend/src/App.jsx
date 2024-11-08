@@ -3,6 +3,7 @@ import "./App.scss";
 
 import axios from "axios";
 import moment from "moment";
+import Quote from "./components/Quote";
 
 function App() {
   const [name, setName] = useState("");
@@ -90,6 +91,10 @@ function App() {
   const handlePostSubmit = (e) => {
     e.preventDefault();
     submitQuote();
+    // reset form
+    setName("");
+    setMessage("");
+    e.target.reset();
   };
 
   return (
